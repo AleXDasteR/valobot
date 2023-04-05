@@ -1,2 +1,1 @@
-def pidoras():
-    pass
+print()
