@@ -22,6 +22,6 @@ def mappick(name):
                        2]],
                    maps[6]: [smokers[4], 'KAY/O or Sova', defenders[3], duelists[0], duelists[1]]}
     if map1 in maps:
-        return ' '.join(perfectpick[map1])
+        return '\n'.join(perfectpick[map1])
     else:
         return 'Неверное название карты,пишите оригинальное название карты по-английски'
