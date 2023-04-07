@@ -8,17 +8,6 @@ bot = telebot.TeleBot(token)
 
 
 # endregion
-def trackerparse():
-    url = 'https://tracker.gg/valorant/insights/agents'
-    request = requests.get(url)
-    soup = bs(request.text, 'html.parser')
-    agents = soup.find_all('div', class_='value')
-    print('Agent     PickRate Win%   Kills  KDR')
-    for i in range(0, 105, 5):
-        print(agents[i].text.ljust(9), agents[i + 1].text.ljust(8), agents[i + 2].text.ljust(6),
-              agents[i + 3].text.ljust(6), agents[i + 4].text)
-
-
 def most_popular(role):
     url = 'https://tracker.gg/valorant/insights/agents'
     request = requests.get(url)
@@ -54,5 +43,4 @@ def most_popular(role):
     return dict_person[role]
 
 
-role = input()
-print(most_popular(role))
+print(most_popular(input()))

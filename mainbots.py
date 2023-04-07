@@ -8,8 +8,7 @@ from solopickbyclass import solopick as solo
 from solopickbyclass import klassi as k
 from solopickbyclass import maps as m
 from trackerpic import trackerparse as t
-import requests
-from bs4 import BeautifulSoup as Bs
+
 
 # region
 token = '5611338157:AAFAZ0Jh7F-70b5RRJ_-3_pr3Y-X-zjxnJM'
