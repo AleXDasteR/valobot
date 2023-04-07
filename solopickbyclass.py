@@ -5,7 +5,12 @@ klassi = ['смоки', 'флешки', 'защитник', 'дуэлянт']
 
 
 def solopick(klass):
-    agents = klass.lower().split('+')
+    if klass.count('+') == 1:
+        agents = klass.lower().split('+')
+    elif klass.count('на') == 1:
+        agents = klass.lower().split(' на ')
+    else:
+        agents = klass.lower().split(' ')
     smokers = ['Astra', 'Brimstone', 'Harbor', 'Omen', 'Viper']  # список всех агентов по классам
     flashes = ['Breach', 'Fade', 'Gekko', 'KAY/O', 'Skye', 'Sova']
     defenders = ['Chamber', 'Cypher', 'Killjoy', 'Sage']

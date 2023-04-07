@@ -8,12 +8,14 @@ def trackerparse():
     request = requests.get(url)
     soup = bs(request.text, 'html.parser')
     agents = soup.find_all('div', class_='value')
-    im = Image.new('RGB', (640, 560), color=('#FFDAB9'))
+    im = Image.new('RGB', (640, 555), color=('#FFDAB9'))
     draw_text = ImageDraw.Draw(im)
+    draw_text.rectangle((0, 27, 640, 153), fill='#00FA9A')
+    draw_text.rectangle((0, 430, 640, 555), fill='#FA8072')
     font = ImageFont.truetype('C:/Users/Alexey/Desktop/Aboreto-Regular.ttf', size=22)
     draw_text.text(
         (0, 0),
-        'Agent      PickRate           Win%            Kills              KDR',
+        ' Agent     PickRate          Win%           Kills             KDR',
         font=font,
         fill=('#7B68EE')
     )
