@@ -15,7 +15,9 @@ def trackerparse():
     agents = soup.find_all('div', class_='value')
     print('Agent     PickRate Win%   Kills  KDR')
     for i in range(0, 105, 5):
-        print(agents[i].text.ljust(9), agents[i + 1].text.ljust(8), agents[i + 2].text.ljust(6), agents[i + 3].text.ljust(6), agents[i + 4].text)
+        print(agents[i].text.ljust(9), agents[i + 1].text.ljust(8), agents[i + 2].text.ljust(6),
+              agents[i + 3].text.ljust(6), agents[i + 4].text)
+
 
 def most_popular(role):
     url = 'https://tracker.gg/valorant/insights/agents'
@@ -38,17 +40,19 @@ def most_popular(role):
                                                                             float(agents[i + 4].text)]}
         elif agents[i].text in ['Chamber', 'Cypher', 'Killjoy', 'Sage']:
             dict_person['defenders'] = dict_person.get('defenders', {}) | {agents[i].text:
+                                                                               [float(agents[i + 1].text[:-1]),
+                                                                                float(agents[i + 2].text[:-1]),
+                                                                                float(agents[i + 3].text[:-1]),
+                                                                                float(agents[i + 4].text)]}
+        else:
+            dict_person['dualist'] = dict_person.get('dualist', {}) | {agents[i].text:
                                                                            [float(agents[i + 1].text[:-1]),
                                                                             float(agents[i + 2].text[:-1]),
                                                                             float(agents[i + 3].text[:-1]),
                                                                             float(agents[i + 4].text)]}
-        else:
-            dict_person['dualist'] = dict_person.get('dualist', {}) | {agents[i].text:
-                                          [float(agents[i + 1].text[:-1]), float(agents[i + 2].text[:-1]),
-                                           float(agents[i + 3].text[:-1]),
-                                           float(agents[i + 4].text)]}
 
     return dict_person[role]
+
 
 role = input()
 print(most_popular(role))
