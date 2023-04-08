@@ -3,7 +3,7 @@ import time
 
 import telebot
 from telebot import types
-from perfectpickchoice import mappick as pick
+from ideal_pick_pic import pick_pic
 from solopickbyclass import solopick as solo
 from solopickbyclass import klassi as k
 from solopickbyclass import maps as m
@@ -48,7 +48,9 @@ def perfmap(message):
             (message.text.split(' на ')[0].lower() in k and message.text.split(' на ')[1].lower() in m):
         bot.send_message(message.chat.id, solo(message.text))
     elif message.text.lower() in ['pearl', 'split', 'haven', 'lotus', 'fracture', 'ascent', 'icebox']:
-        bot.send_message(message.chat.id, pick(message.text))
+        pick_pic(message.text)
+        pick_photo = open('C:/Users/Alexey/PycharmProjects/valobottelega/perfectpick.png', 'rb')
+        bot.send_photo(message.chat.id, pick_photo)
 
 
 bot.infinity_polling()

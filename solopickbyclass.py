@@ -1,5 +1,6 @@
 import random
 
+
 maps = ['pearl', 'split', 'haven', 'lotus', 'fracture', 'ascent', 'icebox']
 klassi = ['смоки', 'флешки', 'защитник', 'дуэлянт']
 
