@@ -8,6 +8,7 @@ from solopickbyclass import solopick as solo
 from solopickbyclass import klassi as k
 from solopickbyclass import maps as m
 from trackerpic import trackerparse as t
+from my_tracker_data import personal_profile as profile
 
 
 # region
@@ -51,6 +52,13 @@ def perfmap(message):
         pick_pic(message.text)
         pick_photo = open('C:/Users/Alexey/PycharmProjects/valobottelega/perfectpick.png', 'rb')
         bot.send_photo(message.chat.id, pick_photo)
+    elif '#' in message.text.lower():
+        try:
+            profile(message.text)
+            stats_photo = open('C:/Users/Alexey/PycharmProjects/valobottelega/personal_tracker.jpg', 'rb')
+            bot.send_photo(message.chat.id, stats_photo)
+        except IndexError:
+            bot.send_message(message.chat.id, 'Вы ввели неправильное имя или тег!')
 
 
 bot.infinity_polling()
