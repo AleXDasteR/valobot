@@ -1,6 +1,4 @@
-from PIL import Image
-import requests
-from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
 from perfectpickchoice import mappick as pick
 
 
@@ -10,58 +8,56 @@ def pick_pic(map_name):
     defenders = ['chamber', 'cypher', 'killjoy', 'sage']
     duelists = ['jett', 'neon', 'phoenix', 'raze', 'reyna', 'yoru']
     pick_dict = {smokers[
-                     0]: 'https://static.wikia.nocookie.net/valorant/images/0/08/Astra_icon.png/revision/latest?cb=20210302164234',
+                     0]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Astra_icon.png',
                  smokers[
-                     1]: 'https://static.wikia.nocookie.net/valorant/images/4/4d/Brimstone_icon.png/revision/latest?cb=20201128234311',
+                     1]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Brimstone_icon.png',
                  smokers[
-                     2]: 'https://static.wikia.nocookie.net/valorant/images/f/f3/Harbor_icon.png/revision/latest?cb=20221018133629',
+                     2]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Harbor_icon.png',
                  smokers[
-                     3]: 'https://static.wikia.nocookie.net/valorant/images/b/b0/Omen_icon.png/revision/latest?cb=20201128234318',
+                     3]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Omen_icon.png',
                  smokers[
-                     4]: 'https://static.wikia.nocookie.net/valorant/images/5/5f/Viper_icon.png/revision/latest?cb=20201128234408',
+                     4]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Viper_icon.png',
                  flashes[
-                     0]: 'https://static.wikia.nocookie.net/valorant/images/5/53/Breach_icon.png/revision/latest?cb=20201128234328',
+                     0]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Breach_icon.png',
                  flashes[
-                     1]: 'https://static.wikia.nocookie.net/valorant/images/a/a6/Fade_icon.png/revision/latest?cb=20220525095157',
+                     1]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Fade_icon.png',
                  flashes[
-                     2]: 'https://static.wikia.nocookie.net/valorant/images/6/66/Gekko_icon.png/revision/latest?cb=20230307165000',
+                     2]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Gekko_icon.png',
                  flashes[
-                     3]: 'https://static.wikia.nocookie.net/valorant/images/f/f0/KAYO_icon.png/revision/latest?cb=20210622225019',
+                     3]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/KAYO_icon.png',
                  flashes[
-                     4]: 'https://static.wikia.nocookie.net/valorant/images/3/33/Skye_icon.png/revision/latest?cb=20201128234628',
+                     4]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Skye_icon.png',
                  flashes[
-                     5]: 'https://static.wikia.nocookie.net/valorant/images/4/49/Sova_icon.png/revision/latest?cb=20201128234221',
+                     5]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Sova_icon.png',
                  defenders[
-                     0]: 'https://static.wikia.nocookie.net/valorant/images/0/09/Chamber_icon.png/revision/latest?cb=20211113013323',
+                     0]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Chamber_icon.png',
                  defenders[
-                     1]: 'https://static.wikia.nocookie.net/valorant/images/8/88/Cypher_icon.png/revision/latest?cb=20201128234211',
+                     1]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Cypher_icon.png',
                  defenders[
-                     2]: 'https://static.wikia.nocookie.net/valorant/images/1/15/Killjoy_icon.png/revision/latest?cb=20200805002141',
+                     2]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Killjoy_icon.png',
                  defenders[
-                     3]: 'https://static.wikia.nocookie.net/valorant/images/7/74/Sage_icon.png/revision/latest?cb=20201128234057',
+                     3]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Sage_icon.png',
                  duelists[
-                     0]: 'https://static.wikia.nocookie.net/valorant/images/3/35/Jett_icon.png/revision/latest?cb=20201128234156',
+                     0]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Jett_icon.png',
                  duelists[
-                     1]: 'https://static.wikia.nocookie.net/valorant/images/d/d0/Neon_icon.png/revision/latest?cb=20220111220652',
+                     1]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Neon_icon.png',
                  duelists[
-                     2]: 'https://static.wikia.nocookie.net/valorant/images/1/14/Phoenix_icon.png/revision/latest?cb=20201128234131',
+                     2]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Phoenix_icon.png',
                  duelists[
-                     3]: 'https://static.wikia.nocookie.net/valorant/images/9/9c/Raze_icon.png/revision/latest?cb=20201128234400',
+                     3]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Raze_icon.png',
                  duelists[
-                     4]: 'https://static.wikia.nocookie.net/valorant/images/b/b0/Reyna_icon.png/revision/latest?cb=20200607180311',
+                     4]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Reyna_icon.png',
                  duelists[
-                     5]: 'https://static.wikia.nocookie.net/valorant/images/d/d4/Yoru_icon.png/revision/latest?cb=20210112211830'}
-    holst = Image.new('RGB', (1270, 256), color='#ffffff')
+                     5]: 'C:/Users/Alexey/PycharmProjects/valobottelega/icons/Yoru_icon.png'}
+    holst = Image.new('RGB', (620, 1400), color='#FFDAB9')
     karta = pick(map_name)
-    x = 0
+    font = ImageFont.truetype('C:/Users/Alexey/Desktop/Aboreto-Regular.ttf', size=60)
+    draw_text = ImageDraw.Draw(holst)
+    x = 70
     for agent in karta:
-        if agent not in ['chamber', 'gekko', 'harbor', 'sage', 'jett']:
-            holst.paste(Image.open(BytesIO(requests.get(pick_dict[agent]).content)), (x, 0))
-        elif agent in ['chamber', 'gekko', 'harbor']:
-            holst.paste(Image.open(BytesIO(requests.get(pick_dict[agent]).content)).resize((256, 256)), (x, 0))
-        elif agent == 'sage':
-            holst.paste(Image.open(BytesIO(requests.get(pick_dict[agent]).content)).resize((264, 256)), (x, 0))
-        elif agent == 'jett':
-            holst.paste(Image.open(BytesIO(requests.get(pick_dict[agent]).content)).resize((264, 260)), (x, 0))
-        x += 255
+        draw_text.text((300, 60), text=map_name, font=font, fill=('#4B0082'), anchor='ms')
+        tracker_photo = Image.open(pick_dict[agent]).resize((256, 256))
+        holst.paste(tracker_photo, (0, x), mask=tracker_photo.convert('RGBA'))
+        draw_text.text((260, x + 100), agent.title(), font=font, fill=('#4B0082'))
+        x += 270
     holst.save('C:/Users/Alexey/PycharmProjects/valobottelega/perfectpick.png')
