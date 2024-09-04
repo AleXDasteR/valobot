@@ -12,7 +12,7 @@ from my_tracker_data import personal_profile as profile
 
 
 # region
-token = '5611338157:AAFAZ0Jh7F-70b5RRJ_-3_pr3Y-X-zjxnJM'
+token = 'token'
 bot = telebot.TeleBot(token)
 
 
